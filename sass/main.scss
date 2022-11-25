@@ -1,0 +1,26 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+$main: rgb(8,6,133);
+h1{
+    color: #{$main};
+}
+form{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+form input:nth-child(2){
+    background-color: #{$main};
+}
+form input{
+    outline: none;
+}
+@media (max-width: 767px) {
+    form input{
+        max-width: 100%;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}

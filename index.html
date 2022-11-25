@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap Link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="./sass/main.css">
+    <!-- React Links -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- BABEL Link -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="shortcut icon" href="images/shortcut.png">
+    <title>To-Do List</title>
+</head>
+<body class="w-100"> 
+    <section>
+        <div class="container vh-100 d-flex justify-content-center align-items-center flex-column">
+            <div id="app"></div>
+        </div>
+    </section>
+    <script type="text/babel">
+        let myValue;
+        let allItems = [];
+        let handleChange = (e) => {
+            myValue = e.target.value;
+        }
+        let handleSubmit = (e) => {
+            e.preventDefault();
+            allItems.push(myValue);
+            render();
+        }
+        function render (){
+            class App extends React.Component{
+                render(){
+                    return(
+                        <div>
+                            <Heading/>
+                            <Form/>
+                        </div>
+                    );
+                }
+            }
+            class Heading extends React.Component{
+                render(){
+                    return (
+                        <h1 className="text-center">ToDo List</h1>
+                    );
+                }
+            }
+            class Form extends React.Component{
+                render(){
+                    return (
+                        <div>
+                            <form className="p-4 rounded" onSubmit={handleSubmit} >
+                                <input className="py-2 px-3 rounded me-2 border" type="text" onChange={handleChange} placeholder = "Write Your Task" />
+                                <input className="py-2 px-3 rounded text-light" type="submit" value = "Add Task" />
+                                <UlMenu/>
+                            </form>
+                        </div>
+                    );
+                }
+            }
+            class UlMenu extends React.Component{
+                render(){
+                    return (
+                        <ul className="text-start pt-3">{allItems.length ? allItems.map((item) => <li>{item}</li>) : "" }</ul>
+                    );
+                }
+            }
+            ReactDOM.render(<App/> , document.getElementById("app"));
+        }
+        render();
+    </script>
+</body>
+</html>
