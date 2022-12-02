@@ -1,10 +1,10 @@
+$main: rgb(8,6,133);
 *{
     box-sizing: border-box;
 }
 body{
     font-family: 'Open Sans', sans-serif;
 }
-$main: rgb(8,6,133);
 h1{
     color: #{$main};
 }
@@ -16,6 +16,10 @@ form input:nth-child(2){
 }
 form input{
     outline: none;
+}
+form span{
+    cursor: pointer;
+    color: #{$main};
 }
 @media (max-width: 767px) {
     form input{
